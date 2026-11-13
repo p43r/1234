@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Plan siedzenia – prostokątna sala</title>
+<style>
+  :root{
+    --plank:#c9a06a;
+    --plank-dark:#9a7742;
+    --accent:#6d4aff;
+    --pass:44px;               /* wspólna "grubość" obu przejść */
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;padding:24px;
+    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+    background:#efeae0;color:#2b2b2b;
+  }
+  h1{text-align:center;font-size:22px;margin:0 0 4px}
+  p.note{text-align:center;color:#777;margin:0 0 20px;font-size:13px;max-width:720px;margin-left:auto;margin-right:auto}
+
+  /* sala: wysoki prostokąt — lewa linia | pionowe przejście | stół A */
+  .room{
+    max-width:900px;
+    margin:0 auto;
+    background:#fbfaf7;
+    border:5px solid #3a3a3a;border-radius:10px;
+    padding:22px 18px;
+    display:grid;
+    grid-template-columns:46fr var(--pass) 54fr;
+    gap:14px;
+    min-height:900px;
+  }
+
+  .lbl{
+    text-align:center;font-weight:700;color:var(--accent);
+    font-size:15px;letter-spacing:.5px;margin-bottom:8px;
+  }
+
+  /* ==== stół pionowy: lewa kolumna miejsc | blat | prawa kolumna miejsc ==== */
+  .vtable{
+    display:flex;
+    align-items:stretch;
+    gap:4px;
+  }
+  .side{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .plank{
+    flex:0 0 56px;              /* stała szerokość blatu */
+    background:var(--plank);
+    border:2px solid var(--plank-dark);
+    border-radius:5px;
+  }
+  .seat{
+    min-height:46px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .seat span{
+    display:inline-block;background:#fff;border:1px solid #b9b3a7;
+    border-radius:10px;padding:5px 7px;line-height:1.15;
+    font-size:12px;text-align:center;width:100%;
+  }
+  .seat.empty span{background:#efece6;color:#aaa;border-style:dashed}
+
+  /* lewa kolumna sali: B, przejście poziome, C */
+  .col-left{
+    display:grid;
+    grid-template-rows:auto auto auto 1fr;
+    gap:14px;
+  }
+  .passage{
+    height:var(--pass);
+    border:2px dashed #c9c2b4;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    color:#a89e8b;font-size:11px;font-style:italic;
+    text-align:center;line-height:1.2;padding:2px;
+    white-space:nowrap;overflow:hidden;
+  }
+
+  /* pionowe przejście między B/C a stołem A — bez opisu */
+  .passage-v{
+    width:var(--pass);
+    border:2px dashed #c9c2b4;border-radius:8px;
+    align-self:stretch;
+  }
+</style>
+</head>
+<body>
+
+<h1>Układ stołów – prostokątna sala</h1>
+<p class="note">
+  Każda para siedzi naprzeciwko siebie przez stół: pierwsza osoba po lewej stronie stołu,
+  druga po prawej. Z lewej strony sali stoły B i C (między nimi przejście do schodów),
+  z prawej jeden ciągły, długi stół A. Krzyżyk oznacza wolne miejsce.
+</p>
+
+<div class="room">
+
+  <!-- ==================== LEWA STRONA SALI ==================== -->
+  <div class="col-left">
+
+    <!-- Stół B -->
+    <div>
+      <div class="lbl"></div>
+      <div class="vtable">
+        <div class="side">
+          <div class="seat"><span>Zbyszek</span></div>
+          <div class="seat"><span>Mariola</span></div>
+          <div class="seat"><span>Ola</span></div>
+          <div class="seat"><span>Ryś</span></div>
+          <div class="seat"><span>Marylka</span></div>
+        </div>
+        <div class="plank"></div>
+        <div class="side">
+          <div class="seat"><span>Mateusz</span></div>
+          <div class="seat"><span>Matyldzia</span></div>
+          <div class="seat"><span>Marek</span></div>
+          <div class="seat"><span>Janina</span></div>
+          <div class="seat"><span>Czesiu</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- przejście do schodów -->
+    <div class="passage">wąskie przejście do schodów (na salę)</div>
+
+    <!-- Stół C -->
+    <div>
+      <div class="lbl"></div>
+      <div class="vtable">
+        <div class="side">
+          <div class="seat"><span>Darek</span></div>
+          <div class="seat"><span>Mariolka</span></div>
+          <div class="seat"><span>Kamil</span></div>
+          <div class="seat"><span>Asia</span></div>
+          <div class="seat"><span>Dominik</span></div>
+        </div>
+        <div class="plank"></div>
+        <div class="side">
+          <div class="seat"><span>Mikołaj</span></div>
+          <div class="seat"><span>Hania</span></div>
+          <div class="seat"><span>Martynka</span></div>
+          <div class="seat"><span>Dagmara</span></div>
+          <div class="seat"><span>Paweł</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== PIONOWE PRZEJŚCIE (KORYTARZ) ==================== -->
+  <div class="passage-v"></div>
+
+  <!-- ==================== PRAWA STRONA SALI ==================== -->
+  <div>
+    <div class="lbl"></div>
+    <div class="vtable">
+      <div class="side">
+        <div class="seat"><span>Sylwia</span></div>
+        <div class="seat"><span>Kuba</span></div>
+        <div class="seat"><span>Szymon</span></div>
+        <div class="seat"><span>Magda</span></div>
+        <div class="seat"><span>Arvi</span></div>
+        <div class="seat"><span>Adam</span></div>
+        <div class="seat"><span>Josi</span></div>
+        <div class="seat"><span>Siaśka</span></div>
+        <div class="seat"><span>Emil</span></div>
+        <div class="seat"><span>Mirka</span></div>
+        <div class="seat"><span>Gosia</span></div>
+        <div class="seat"><span>Aguś</span></div>
+      </div>
+      <div class="plank"></div>
+      <div class="side">
+        <div class="seat"><span>Łukasz</span></div>
+        <div class="seat"><span>Justyna</span></div>
+        <div class="seat"><span>Justyna</span></div>
+        <div class="seat"><span>Fiolka</span></div>
+        <div class="seat"><span>Piotr</span></div>
+        <div class="seat"><span>Krzysiu</span></div>
+        <div class="seat"><span>Mati</span></div>
+        <div class="seat"><span>Asieńka</span></div>
+        <div class="seat"><span>Peter</span></div>
+        <div class="seat"><span>Michał</span></div>
+        <div class="seat"><span>Paweł</span></div>
+        <div class="seat empty"><span>&times;</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
